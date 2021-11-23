@@ -1,8 +1,8 @@
 package ch10threads;
 
-public class AccountDanger implements Runnable{
+public class AccountNoDanger implements Runnable{
 	private BankAccount account;
-	public AccountDanger(BankAccount account) {
+	public AccountNoDanger(BankAccount account) {
 		this.account = account;
 	}
 	
@@ -18,7 +18,7 @@ public class AccountDanger implements Runnable{
 		}
 	}
 	
-	private void makeWithdrawal(int amt) {
+	private synchronized void makeWithdrawal(int amt) {
 		if(account.getBalance() >= amt) {
 			System.out.println("Thread " + Thread.currentThread().getName() + " is going to withdraw");
 			try {
