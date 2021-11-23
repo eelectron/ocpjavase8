@@ -10,21 +10,28 @@ public class AccountDanger implements Runnable{
 		int n = 10;
 		int amt = 10;
 		for(int i = 0; i < n; i++) {
-			if(amt <= account.getBalance()) {
-				System.out.println("Thread " + Thread.currentThread().getName() + " is going to withdraw");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				account.withdraw(amt);
-				System.out.println("Thread " + Thread.currentThread().getName() + " has withdrawn. " + " Balance = " + account.getBalance());
-			}
-			else {
-				System.out.println("Thread " + Thread.currentThread().getName() + " can not withdraw . " );
+			makeWithdrawal(amt);
+			if(account.getBalance() < 0) {
+				System.out.println("Account is overdrawn !");
 				break;
 			}
+		}
+	}
+	
+	private void makeWithdrawal(int amt) {
+		if(amt <= account.getBalance()) {
+			System.out.println("Thread " + Thread.currentThread().getName() + " is going to withdraw");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			account.withdraw(amt);
+			System.out.println("Thread " + Thread.currentThread().getName() + " has withdrawn. " + " Balance = " + account.getBalance());
+		}
+		else {
+			System.out.println("Thread " + Thread.currentThread().getName() + " can not withdraw . " );
 		}
 	}
 }
