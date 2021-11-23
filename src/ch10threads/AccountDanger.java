@@ -23,6 +23,7 @@ public class AccountDanger implements Runnable{
 			}
 			else {
 				System.out.println("Thread " + Thread.currentThread().getName() + " can not withdraw . " );
+				break;
 			}
 		}
 	}
