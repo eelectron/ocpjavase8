@@ -7,7 +7,7 @@ public class AccountDanger implements Runnable{
 	}
 	
 	public void run() {
-		int n = 10;
+		int n = 5;
 		int amt = 10;
 		for(int i = 0; i < n; i++) {
 			makeWithdrawal(amt);
